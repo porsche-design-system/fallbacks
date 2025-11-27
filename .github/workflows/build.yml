@@ -37,7 +37,7 @@ jobs:
       - name: 'Install'
         uses: ./.github/actions/install
       - name: 'Build'
-        run: npm run build:ci
+        run: npm run build
       - name: 'Upload artifact'
         uses: actions/upload-artifact@v5
         with:
