@@ -1,0 +1,1 @@
+!function(){if(["IntersectionObserver","MutationObserver","customElements"].some(e=>!(e in window))){const e=document.createElement("script");e.src="browser-support.js",document.body.appendChild(e)}}();
