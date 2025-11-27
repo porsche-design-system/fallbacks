@@ -1,0 +1,53 @@
+name: 'Test'
+
+on:
+  workflow_call:
+    inputs:
+      image:
+        description: 'Docker image to be used in workflow.'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: 'Unit'
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ inputs.image }}
+      options: --user 1001
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v5
+      - name: 'Install'
+        uses: ./.github/actions/install
+      - name: 'Unit'
+        run: npm run test:unit
+        shell: bash
+  vrt:
+   name: 'VRT'
+   runs-on: ubuntu-latest
+   container:
+     image: ${{ inputs.image }}
+     options: --user 1001
+   steps:
+     - name: 'Checkout'
+       uses: actions/checkout@v5
+     - name: 'Install'
+       uses: ./.github/actions/install
+     - name: 'Download artifact'
+       uses: actions/download-artifact@v6
+       with:
+         name: build-fallbacks
+         path: ./dist
+     - name: 'VRT'
+       run: npm run test:vrt
+       shell: bash
+     - name: 'VRT Regression'
+       if: failure()
+       uses: actions/upload-artifact@v5
+       with:
+         name: regression-vrt-fallbacks
+         path: ./tests/vrt/test-results
