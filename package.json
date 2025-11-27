@@ -36,6 +36,7 @@
     "build:www": "rm -rf ./www && mkdir -p ./www && cp -r ./public/. ./www && cp -r ./dist/tmp/. ./www/.",
     "test:unit": "vitest --config tests/unit/config/vitest.config.ts",
     "test:vrt": "playwright test --config=tests/vrt/config/playwright.config.ts",
+    "test:smoke:unit": "vitest --config tests/smoke/unit/config/vitest.config.ts",
     "clean:build": "rm -rf ./index.ts && rm -rf ./dist && rm -rf ./cdn && rm -rf ./tmp && rm -rf ./www"
   },
   "devDependencies": {
@@ -52,7 +53,8 @@
     "tsup": "^8.5.0",
     "tsx": "^4.20.6",
     "typescript": "~5.9.3",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "mime": "^4.1.0"
   },
   "volta": {
     "node": "22.12.0",
