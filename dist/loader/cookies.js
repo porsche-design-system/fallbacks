@@ -1,1 +1,0 @@
-!function(){if(!(window.navigator||navigator).cookieEnabled){const o=document.createElement("script");o.src="https://cdn.ui.porsche.com/porsche-design-system/fallbacks/cookies.a9ad23a.js",document.body.appendChild(o)}}();

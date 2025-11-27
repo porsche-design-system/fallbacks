@@ -1,1 +1,0 @@
-!function(){if(["IntersectionObserver","MutationObserver","customElements"].some(e=>!(e in window))){const e=document.createElement("script");e.src="https://cdn.ui.porsche.com/porsche-design-system/fallbacks/browser-support.1a10176.js",document.body.appendChild(e)}}();

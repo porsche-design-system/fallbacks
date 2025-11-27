@@ -1,0 +1,21 @@
+# Directories
+node_modules/
+dist/
+dist-tmp/
+.stencil/
+.angular/
+tmp/
+www/
+build/
+.next/
+.react-router/
+out/
+reports/
+generated/
+coverage/
+playwright-report/
+ort/
+**/tests/**/results/
+
+# Generated
+index.ts
