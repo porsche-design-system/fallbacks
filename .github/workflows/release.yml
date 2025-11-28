@@ -27,7 +27,7 @@ jobs:
       is-fallbacks-published: ${{ steps.is_fallbacks_published_check.outputs.is-published }}
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 'Download artifact'
         uses: actions/download-artifact@v6
         with:
@@ -54,7 +54,7 @@ jobs:
       options: --user 1001
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: 'Install'
         uses: ./.github/actions/install
       - name: 'Download artifact'
@@ -62,7 +62,7 @@ jobs:
         with:
           name: build-partials
           path: ./partials/dist
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           registry-url: 'https://registry.npmjs.org'
           scope: '@porsche-design-system'
