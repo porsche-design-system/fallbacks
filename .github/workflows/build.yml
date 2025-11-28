@@ -67,4 +67,6 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: build-partials
-          path: ./partials/dist/
+          path: |
+            ./partials/dist/
+            ./partials/src/lib/
