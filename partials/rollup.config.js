@@ -92,6 +92,17 @@ export default [
       generatePackageJson({
         outputFolder: outputDir,
         baseContents: {
+          name: "@porsche-design-system/fallbacks",
+          version: "1.0.0",
+          description: "A package providing partials to display various fallbacks, such as for cookies or browser features.",
+          keywords: [
+            "porsche",
+            "fallbacks",
+          ],
+          scope: "@porsche-design-system",
+          author: "Dr. Ing. h.c. F. Porsche AG",
+          license: "SEE LICENSE IN LICENSE",
+          homepage: "https://designsystem.porsche.com",
           main: 'cjs/index.cjs',
           module: 'esm/index.mjs',
           types: 'esm/index.d.ts',

@@ -1,11 +1,11 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import * as fs from 'fs';
+import * as path from 'path';
 import { CDN_BASE_URL_CN, CDN_BASE_URL_COM } from '../../cdn.config';
 import { generateBrowserSupportFallbackScriptPartial } from './generateBrowserSupportFallbackScriptPartial';
 import { generateCookiesFallbackScriptPartial } from './generateCookiesFallbackScriptPartial';
 
 const generateSharedCode = (): string => {
-  return `import type { Cdn, Format, FormatWithCSP, FormatWithJS } from '../shared';
+  return `import type { Cdn, FormatWithCSP } from '../shared';
 import { throwIfRunInBrowser, getSha256Hash } from '../shared';
 
 const getCdnBaseUrl = (cdn: Cdn): string => (cdn === 'cn' ? '${CDN_BASE_URL_CN}' : '${CDN_BASE_URL_COM}');
