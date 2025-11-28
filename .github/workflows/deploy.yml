@@ -38,11 +38,11 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: build-fallbacks
-          path: ./dist
+          path: ./assets/dist
       - name: 'Rclone (Fallbacks)'
         uses: ./.github/actions/rclone
         with:
-          source: 'dist/fallbacks/'
+          source: 'assets/dist/fallbacks/'
           target: 'fallbacks/'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.linode-aws-access-key-id }}
@@ -64,6 +64,6 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: build-fallbacks
-          path: ./dist
+          path: ./assets/dist
       - name: 'Fallbacks'
-        run: yarn test:smoke:fallbacks
+        run: npm run test:smoke:fallbacks --workspace=@porsche-design-system/assets

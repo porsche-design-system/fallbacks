@@ -24,7 +24,7 @@ jobs:
       - name: 'Install'
         uses: ./.github/actions/install
       - name: 'Unit'
-        run: npm run test:unit
+        run: npm run test:unit --workspace=@porsche-design-system/assets
         shell: bash
   vrt:
    name: 'VRT'
@@ -41,13 +41,13 @@ jobs:
        uses: actions/download-artifact@v6
        with:
          name: build-fallbacks
-         path: ./dist
+         path: ./assets/dist
      - name: 'VRT'
-       run: npm run test:vrt
+       run: npm run test:vrt --workspace=@porsche-design-system/assets
        shell: bash
      - name: 'VRT Regression'
        if: failure()
        uses: actions/upload-artifact@v5
        with:
          name: regression-vrt-fallbacks
-         path: ./tests/vrt/test-results
+         path: ./assets/tests/vrt/test-results

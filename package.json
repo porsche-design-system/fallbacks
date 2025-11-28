@@ -1,63 +1,23 @@
 {
   "name": "@porsche-design-system/fallbacks",
-  "version": "0.0.0",
   "private": true,
-  "license": "UNLICENSED",
-  "scope": "@porsche-design-system",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    }
-  },
-  "types": "./dist/index.d.ts",
-  "files": [
-    "./dist/"
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "assets"
   ],
-  "author": "Dr. Ing. h.c. F. Porsche AG",
-  "homepage": "https://designsystem.porsche.com",
   "scripts": {
-    "start": "yarn build && http-server ./www -p 4201",
-    "start-app": "yarn start",
-    "build": "yarn clean:build && yarn build:fallbacks && yarn build:lib && yarn build:www",
-    "build:fallbacks": "yarn build:fallbacks:generate-overlay && yarn build:fallbacks:tmp && yarn build:fallbacks:cdn+loader",
-    "build:fallbacks:generate-overlay": "tsx scripts/generate-overlay.ts",
-    "build:fallbacks:tmp": "rollup -c rollup.config.js --bundleConfigAsCjs",
-    "build:fallbacks:cdn+loader": "tsx scripts/generate-cdn-loader.ts",
-    "build:lib": "tsup index.ts --format esm,cjs --dts",
-    "build:www": "rm -rf ./www && mkdir -p ./www && cp -r ./public/. ./www && cp -r ./dist/tmp/. ./www/.",
-    "test:unit": "vitest --config tests/unit/config/vitest.config.ts",
-    "test:vrt": "playwright test --config=tests/vrt/config/playwright.config.ts",
-    "test:smoke:unit": "vitest --config tests/smoke/unit/config/vitest.config.ts",
-    "clean:build": "rm -rf ./index.ts && rm -rf ./dist && rm -rf ./cdn && rm -rf ./tmp && rm -rf ./www"
-  },
-  "devDependencies": {
-    "@playwright/test": "1.56.0",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^12.1.4",
-    "@types/html-minifier": "^4.0.5",
-    "change-case": "^5.4.4",
-    "html-minifier": "^4.0.0",
-    "http-server": "^14.1.1",
-    "jsdom": "^27.2.0",
-    "rollup": "^4.52.4",
-    "tslib": "^2.8.1",
-    "tsup": "^8.5.0",
-    "tsx": "^4.20.6",
-    "typescript": "~5.9.3",
-    "vitest": "^3.2.4",
-    "mime": "^4.1.0"
+    "start:assets": "npm run start --workspace=@porsche-design-system/assets",
+    "build:assets": "npm run build --workspace=@porsche-design-system/assets",
+    "test:unit:assets": "npm run test:unit --workspace=@porsche-design-system/assets",
+    "test:vrt:assets": "npm run test:vrt --workspace=@porsche-design-system/assets",
+    "test:smoke:unit:assets": "npm run test:smoke:unit --workspace=@porsche-design-system/assets",
+    "npm:outdated": "npm outdated --workspaces",
+    "npm:upgrade": "npx npm-check-updates --workspaces -u && npm install",
+    "npm:remove": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;",
+    "npm:clean": "npm cache clean --force"
   },
   "volta": {
-    "node": "22.12.0",
-    "yarn": "1.22.22"
+    "node": "22.12.0"
   }
 }

@@ -1,6 +1,6 @@
 import mime from 'mime';
 import { describe, expect, test } from 'vitest';
-import { CDN_BASE_URL_COM } from '../../../../cdn.config';
+import { CDN_BASE_URL_COM } from '../../../../../cdn.config';
 import {CDN_BASE_PATH, FALLBACKS_MANIFEST} from "../../../../index";
 
 describe('cdn', () => {

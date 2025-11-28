@@ -57,4 +57,5 @@ Thumbs.db
 .vercel
 
 # Generated
-index.ts
+/assets/index.ts
+/partials/src/lib/*
