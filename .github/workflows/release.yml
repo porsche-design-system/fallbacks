@@ -1,0 +1,74 @@
+name: 'Release'
+
+on:
+  workflow_call:
+    inputs:
+      image:
+        description: 'Docker image to be used in workflow.'
+        required: true
+        type: string
+    secrets:
+      github-token:
+        description: 'github token for container registry'
+        required: true
+      npmjs-registry-token:
+        description: 'npm registry token for npmjs'
+        required: true
+
+jobs:
+  check-publication-status:
+    name: 'Check Publication Status'
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ inputs.image }}
+      options: --user 1001
+    outputs:
+      components-version: ${{ steps.get_npm_version.outputs.version }}
+      is-fallbacks-published: ${{ steps.is_fallbacks_published_check.outputs.is-published }}
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+      - name: 'Download artifact'
+        uses: actions/download-artifact@v6
+        with:
+          name: build-partials
+          path: ./partials
+      - name: 'Get Package Version'
+        id: get_npm_version
+        uses: ./.github/actions/get-local-package-version
+        with:
+          path: 'partials/dist'
+      - name: 'Check if "@porsche-design-system/fallbacks" version is published'
+        id: is_fallbacks_published_check
+        uses: ./.github/actions/is-npm-package-published
+        with:
+          package-name: '@porsche-design-system/fallbacks'
+          package-version: ${{ steps.get_npm_version.outputs.version }}
+  npm-fallbacks:
+    name: 'NPM (Fallbacks)'
+    needs: check-publication-status
+    if: ${{ needs.check-publication-status.outputs.is-fallbacks-published == 'false' }}
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ inputs.image }}
+      options: --user 1001
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+      - name: 'Install'
+        uses: ./.github/actions/install
+      - name: 'Download artifact'
+        uses: actions/download-artifact@v6
+        with:
+          name: build-partials
+          path: ./partials/dist
+      - uses: actions/setup-node@v4
+        with:
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@porsche-design-system'
+      - run: chmod +x ./.github/workflows/release-npm.sh
+      - name: 'Publish'
+        run: ./.github/workflows/release-npm.sh partials/dist
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npmjs-registry-token }}
+          GITHUB_TOKEN: ${{ secrets.github-token }}
