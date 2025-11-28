@@ -94,7 +94,7 @@ export default [
         baseContents: {
           name: "@porsche-design-system/fallbacks",
           version: "1.0.0",
-          description: "A package providing partials to display various fallbacks, such as for cookies or browser features.",
+          description: "This package provides partials for the Porsche Design System which can be used to integrate fallback scripts for browser support and cookies",
           keywords: [
             "porsche",
             "fallbacks",
