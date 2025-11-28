@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "workspaces": [
-    "assets"
+    "assets",
+    "partials"
   ],
   "scripts": {
     "start:assets": "npm run start --workspace=@porsche-design-system/assets",
@@ -12,6 +13,8 @@
     "test:unit:assets": "npm run test:unit --workspace=@porsche-design-system/assets",
     "test:vrt:assets": "npm run test:vrt --workspace=@porsche-design-system/assets",
     "test:smoke:unit:assets": "npm run test:smoke:unit --workspace=@porsche-design-system/assets",
+    "build:partials": "npm run build --workspace=@porsche-design-system/partials",
+    "test:partials": "npm run test --workspace=@porsche-design-system/partials",
     "npm:outdated": "npm outdated --workspaces",
     "npm:upgrade": "npx npm-check-updates --workspaces -u && npm install",
     "npm:remove": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;",
