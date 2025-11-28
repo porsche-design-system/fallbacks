@@ -25,8 +25,8 @@ jobs:
 #        uses: ./.github/actions/install
 #      - name: 'Lint'
 #        run: npm run lint
-  fallbacks:
-    name: 'Fallbacks'
+  assets:
+    name: 'Assets'
     runs-on: ubuntu-latest
     container:
       image: ${{ inputs.image }}
@@ -43,3 +43,23 @@ jobs:
         with:
           name: build-fallbacks
           path: ./assets/dist/
+  partials:
+    name: 'Partials'
+    needs:
+      - assets
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ inputs.image }}
+      options: --user 1001
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v5
+      - name: 'Install'
+        uses: ./.github/actions/install
+      - name: 'Build'
+        run: npm run build --workspace=@porsche-design-system/partials
+      - name: 'Upload artifact'
+        uses: actions/upload-artifact@v5
+        with:
+          name: build-partials
+          path: ./partials/dist/
