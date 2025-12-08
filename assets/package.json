@@ -47,13 +47,13 @@
     "change-case": "^5.4.4",
     "html-minifier": "^4.0.0",
     "http-server": "^14.1.1",
-    "jsdom": "^27.2.0",
+    "jsdom": "^27.3.0",
     "rollup": "^4.52.4",
     "tslib": "^2.8.1",
     "tsup": "^8.5.0",
-    "tsx": "^4.20.6",
+    "tsx": "^4.21.0",
     "typescript": "~5.9.3",
-    "vitest": "^4.0.14",
+    "vitest": "^4.0.15",
     "mime": "^4.1.0"
   },
   "volta": {
