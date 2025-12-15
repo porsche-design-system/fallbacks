@@ -38,7 +38,7 @@ jobs:
      - name: 'Install'
        uses: ./.github/actions/install
      - name: 'Download artifact'
-       uses: actions/download-artifact@v6
+       uses: actions/download-artifact@v7
        with:
          name: build-fallbacks
          path: ./assets/dist
@@ -47,7 +47,7 @@ jobs:
        shell: bash
      - name: 'VRT Regression'
        if: failure()
-       uses: actions/upload-artifact@v5
+       uses: actions/upload-artifact@v6
        with:
          name: regression-vrt-fallbacks
          path: ./assets/tests/vrt/test-results
@@ -63,7 +63,7 @@ jobs:
       - name: 'Install'
         uses: ./.github/actions/install
       - name: 'Download artifact'
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: build-partials
           path: ./partials
