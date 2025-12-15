@@ -35,7 +35,7 @@ jobs:
         with:
           node-version: lts/*
       - name: 'Download artifact'
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: build-fallbacks
           path: ./assets/dist
@@ -61,7 +61,7 @@ jobs:
       - name: 'Install'
         uses: ./.github/actions/install
       - name: 'Download artifact'
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: build-fallbacks
           path: ./assets/dist
